@@ -1,0 +1,58 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+buildscript {
+	repositories { jcenter() }
+	dependencies { classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:1.2.3' }
+}
+apply plugin: 'tomcat'
+
+sourceCompatibility = 1.6
+version = '1.0'
+
+project.webAppDirName = 'WebContent'
+
+repositories { mavenCentral() }
+
+dependencies {
+	compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+	compile 'com.sun.faces:jsf-api:2.2.4'
+	compile 'com.sun.faces:jsf-impl:2.2.4'
+	compile group: 'org.primefaces', name: 'primefaces', version:'4.0'
+	compile 'javax.servlet.jsp.jstl:jstl-api:1.2'
+	compile 'org.glassfish.web:el-impl:2.2'
+	//	runtime 'javax.servlet:jstl:1.1.2'
+
+	compile group: 'org.hibernate', name: 'hibernate-core', version:'4.2.0.Final'
+	compile group: 'org.hibernate.common', name: 'hibernate-commons-annotations', version:'4.0.1.Final'
+	compile group: 'org.hibernate', name: 'hibernate-entitymanager', version:'4.2.0.Final'
+	compile 'javax.validation:validation-api:1.1.0.Final'
+	compile 'org.hibernate:hibernate-validator:4.3.1.Final'
+	compile group: 'commons-logging', name: 'commons-logging', version:'1.1.1'
+	compile group: 'org.slf4j', name: 'slf4j-api', version:'1.7.5'
+
+	compile 'mysql:mysql-connector-java:5.1.6'
+	providedCompile group: 'javax.servlet', name: 'servlet-api', version:'3.0-alpha-1'
+	testCompile group: 'junit', name: 'junit', version: '4.+'
+
+	// Tomcat Configuration
+	def tomcatVersion = '7.0.53'
+	tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+			"org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
+	tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
+		exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
+	}
+
+}
+
+test { systemProperties 'property': 'value' }
+
+uploadArchives {
+	repositories {
+		flatDir { dirs 'repos' }
+	}
+}
+
+defaultTasks 'tomcatRun'
