@@ -7,11 +7,9 @@
 
 <h:head></h:head>
 <body>
-	<h:form>
+	<h:form enctype="multipart/form-data">
 		<p:dataTable var="contact" value="#{contactBean.contacts}">
-			<p:column headerText="ID">
-				<h:outputText value="#{contact.id}" />
-			</p:column>
+
 
 			<p:column headerText="Name">
 				<h:outputText value="#{contact.name}" />
@@ -28,6 +26,14 @@
 				<h:outputText value="#{contact.email}" />
 			</p:column>
 		</p:dataTable>
+
+
+		<p:fileUpload value="#{uploadFileBean.file}"
+			allowTypes="/(\.|\/)(xls|xlsx)$/" sizeLimit="100000"
+			description="Select file" mode="simple" />
+		<p:commandButton value="Submit" ajax="false"
+			actionListener="#{uploadFileBean.upload}" />
+
 	</h:form>
 </body>
 </html>

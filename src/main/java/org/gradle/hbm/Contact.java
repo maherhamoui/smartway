@@ -29,9 +29,9 @@ public class Contact {
 	 * @param email
 	 * @param phone
 	 */
-	public Contact(long id, String name, String dob, String email, String phone) {
+	public Contact( String name, String dob, String email, String phone) {
 		super();
-		this.id = id;
+		
 		this.name = name;
 		this.dob = dob;
 		this.email = email;
