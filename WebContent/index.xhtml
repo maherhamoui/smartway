@@ -8,7 +8,26 @@
 <h:head></h:head>
 <body>
 	<h:form>
-		<p:commandButton value="Hello wogggrld!" />
+		<p:dataTable var="contact" value="#{contactBean.contacts}">
+			<p:column headerText="ID">
+				<h:outputText value="#{contact.id}" />
+			</p:column>
+
+			<p:column headerText="Name">
+				<h:outputText value="#{contact.name}" />
+			</p:column>
+
+			<p:column headerText="Date Of Birth">
+				<h:outputText value="#{contact.dob}" />
+			</p:column>
+
+			<p:column headerText="Phone">
+				<h:outputText value="#{contact.phone}" />
+			</p:column>
+			<p:column headerText="email">
+				<h:outputText value="#{contact.email}" />
+			</p:column>
+		</p:dataTable>
 	</h:form>
 </body>
 </html>
