@@ -12,6 +12,6 @@
 		<property name="hibernate.connection.password">dadycool</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
-		<mapping resource="java/org/gradl/Contact.hbm.xml" />
+		<mapping resource="java/org/gradl/hbm/Contact.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
