@@ -31,8 +31,8 @@
 		<p:fileUpload value="#{uploadFileBean.file}"
 			allowTypes="/(\.|\/)(xls|xlsx)$/" sizeLimit="100000"
 			description="Select file" mode="simple" />
-		<p:commandButton value="Submit" ajax="false"
-			actionListener="#{uploadFileBean.upload}" />
+		<p:commandButton  value="Submit" ajax="false"
+			actionListener="#{uploadFileBean.upload}" update="koka" />
 
 	</h:form>
 </body>

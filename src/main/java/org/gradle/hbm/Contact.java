@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "contacts")
-public class Contact {
+public class Contact implements Comparable<Contact> {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
@@ -29,9 +29,13 @@ public class Contact {
 	 * @param email
 	 * @param phone
 	 */
-	public Contact( String name, String dob, String email, String phone) {
+	public Contact() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Contact(String name, String dob, String email, String phone) {
 		super();
-		
+
 		this.name = name;
 		this.dob = dob;
 		this.email = email;
@@ -42,8 +46,8 @@ public class Contact {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDob() {
@@ -72,5 +76,13 @@ public class Contact {
 
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public int compareTo(Contact o) {
+		if (this.email.equals(o))
+			return 0;
+		else
+			return 1;
 	}
 }

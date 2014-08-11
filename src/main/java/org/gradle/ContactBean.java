@@ -27,12 +27,10 @@ public class ContactBean implements Serializable {
 //		hb=new HibernateUtil();
 //		contacts.addAll(hb.listContacts());
 //		System.out.print(contacts);
-		contacts.add(new Contact("maher", "fdf", "dsd", "3424"));
-		contacts.add(new Contact("maher", "fdf", "dsd", "3424"));
-		contacts.add(new Contact("maher", "fdf", "dsd", "3424"));
-		contacts.add(new Contact("maher", "fdf", "dsd", "3424"));
+		
 
 	}
+	
 
 	public List<Contact> getContacts() {
 		return contacts;
