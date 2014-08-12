@@ -6,25 +6,22 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
-import org.gradle.hbm.Contact;
+import org.gradle.business.Contact;
+import org.gradle.hbm.HibernateConnector;
 
 @ManagedBean
 public class ContactBean implements Serializable {
-	
+
 	private List<Contact> contacts;
+	private HibernateConnector hc;
 
 	public ContactBean() {
 		// TODO Auto-generated constructor stub
 		contacts = new ArrayList<Contact>();
-		
-		// getData();
-//		hb=new HibernateUtil();
-//		contacts.addAll(hb.listContacts());
-//		System.out.print(contacts);
-		
+		hc = new HibernateConnector();
+		setContacts(hc.listContacts());
 
 	}
-	
 
 	public List<Contact> getContacts() {
 		return contacts;
@@ -33,12 +30,10 @@ public class ContactBean implements Serializable {
 	public void setContacts(List<Contact> contacts) {
 		this.contacts = contacts;
 	}
-	
-	public void appendContacts(List<Contact> c){
-		this.contacts.addAll(c);
+
+	public void appendContacts(List<Contact> c) {
+		hc.insertContacts(c);
+		setContacts(hc.listContacts());
 	}
-
-	
-
 
 }

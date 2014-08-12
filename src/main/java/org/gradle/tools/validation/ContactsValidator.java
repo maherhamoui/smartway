@@ -3,7 +3,7 @@ package org.gradle.tools.validation;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.gradle.hbm.Contact;
+import org.gradle.business.Contact;
 
 public class ContactsValidator {
 	private List<Contact> contacts;

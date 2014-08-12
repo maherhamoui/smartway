@@ -14,7 +14,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.gradle.hbm.Contact;
+import org.gradle.business.Contact;
 import org.primefaces.model.UploadedFile;
 
 public class ExcelExtReader {

@@ -3,7 +3,7 @@ package org.gradle.tools;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.gradle.hbm.Contact;
+import org.gradle.business.Contact;
 
 public class ContactsComparer {
 	private List<Contact> contacts;
@@ -23,7 +23,7 @@ public class ContactsComparer {
 		for (Contact con1 : newCon) {
 			t = 0;
 			for (Contact con2 : oldCon) {
-				if (con1.compareTo(con2) == 0) {
+				if (compare(con1, con2) == 0) {
 					numExistedContacts++;
 					t++;
 				}
@@ -37,6 +37,13 @@ public class ContactsComparer {
 		}
 
 		return contacts;
+	}
+
+	private int compare(Contact con1, Contact con2) {
+		if (con1.getEmail().equals(con2.getEmail()))
+			return 0;
+		else
+			return 1;
 	}
 
 	public int getNumExistedContacts() {

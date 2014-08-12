@@ -1,6 +1,5 @@
-package org.gradle.hbm;
+package org.gradle.business;
 
-import java.io.Serializable;
 import java.util.Comparator;
 
 import javax.persistence.Column;
@@ -12,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CONTACT")
-public class Contact implements Comparable<Contact>, Comparator<Contact> {
+public class Contact {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
@@ -73,25 +72,8 @@ public class Contact implements Comparable<Contact>, Comparator<Contact> {
 		return name;
 	}
 
-	// @Override
-	public int compareTo(Contact o) {
-		if (this.email.equals(o.getEmail()))
-			return 0;
-		else
-			return 1;
-	}
+	
 
-	@Override
-	public int compare(Contact o1, Contact o2) {
-		// TODO Auto-generated method stub
 
-		return o1.compareTo(o2);
-	}
-
-	@Override
-	public String toString() {
-		return "Contact [id=" + id + ", name=" + name + ", dob=" + dob
-				+ ", email=" + email + ", phone=" + phone + "]";
-	}
 
 }

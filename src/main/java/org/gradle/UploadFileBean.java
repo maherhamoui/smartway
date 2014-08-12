@@ -1,5 +1,6 @@
 package org.gradle;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -7,15 +8,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 import org.dom4j.bean.BeanAttribute;
-import org.gradle.hbm.Contact;
+import org.gradle.business.Contact;
 import org.gradle.tools.ContactsComparer;
 import org.gradle.tools.ExcelExtReader;
-
 import org.gradle.tools.validation.ContactsValidator;
 import org.primefaces.model.UploadedFile;
 
 @ManagedBean
-public class UploadFileBean {
+public class UploadFileBean implements Serializable{
 	private UploadedFile file;
 	private boolean notUploaded = true;
 
