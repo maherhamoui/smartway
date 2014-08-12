@@ -1,50 +1,43 @@
 package org.gradle.hbm;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "contacts")
-public class Contact implements Comparable<Contact>,Comparator<Contact> {
+@Table(name = "CONTACT")
+public class Contact implements Comparable<Contact>, Comparator<Contact> {
 	@Id
-	@GeneratedValue
-	@Column(name = "id")
-	private long id;
-	@Column(name = "name")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private Long id;
+	@Column(name = "NAME")
 	private String name;
-	@Column(name = "dob")
+	@Column(name = "DOB")
 	private String dob;
-	@Column(name = "email")
+	@Column(name = "EMAIL")
 	private String email;
-	@Column(name = "phone")
+	@Column(name = "PHONE")
 	private String phone;
 
-	/**
-	 * @param id
-	 * @param name
-	 * @param dob
-	 * @param email
-	 * @param phone
-	 */
 	public Contact() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Contact(String name, String dob, String email, String phone) {
 		super();
-
 		this.name = name;
 		this.dob = dob;
 		this.email = email;
 		this.phone = phone;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -80,7 +73,7 @@ public class Contact implements Comparable<Contact>,Comparator<Contact> {
 		return name;
 	}
 
-	@Override
+	// @Override
 	public int compareTo(Contact o) {
 		if (this.email.equals(o.getEmail()))
 			return 0;
@@ -91,7 +84,14 @@ public class Contact implements Comparable<Contact>,Comparator<Contact> {
 	@Override
 	public int compare(Contact o1, Contact o2) {
 		// TODO Auto-generated method stub
-		
+
 		return o1.compareTo(o2);
 	}
+
+	@Override
+	public String toString() {
+		return "Contact [id=" + id + ", name=" + name + ", dob=" + dob
+				+ ", email=" + email + ", phone=" + phone + "]";
+	}
+
 }
