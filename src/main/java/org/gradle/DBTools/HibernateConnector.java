@@ -11,8 +11,16 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateConnector implements Serializable {
 	private static SessionFactory sf;
+	  private static final HibernateConnector instance;
+	  static {
+	        try {
+	            instance = new HibernateConnector();
+	        } catch (Exception e) {
+	            throw new RuntimeException("error", e);
+	        }
+	    }
 
-	public HibernateConnector() {
+	private HibernateConnector() {
 		// TODO Auto-generated constructor stub
 		try {
 			// Create the SessionFactory from hibernate.cfg.xml
@@ -62,5 +70,9 @@ public class HibernateConnector implements Serializable {
 		s.close();
 		return contacts;
 	}
+	 public static HibernateConnector getInstance() {
+	        return instance;
+	    }
+	 
 
 }

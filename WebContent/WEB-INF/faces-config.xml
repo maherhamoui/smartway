@@ -4,18 +4,8 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
 	version="2.2">
 	<managed-bean>
-		<managed-bean-name>ListContactBean</managed-bean-name>
-		<managed-bean-class>org.gradle.beans.ListContactsBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
 		<managed-bean-name>mainBean</managed-bean-name>
 		<managed-bean-class>org.gradle.beans.MainBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>uploadFileBean</managed-bean-name>
-		<managed-bean-class>org.gradle.beans.UploadFileBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 

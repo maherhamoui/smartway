@@ -5,15 +5,19 @@ import java.util.List;
 
 import org.gradle.business.Contact;
 import org.gradle.business.ContactsComparer;
+
 /**
- * 
- * @author arma
  * checks list of contacts if they are existed in DB
+ * @author arma 
  */
 public class ContactsExistingChecker {
 	private List<Contact> contacts;
 	private int numExistedContacts = 0;
-	
+
+	public ContactsExistingChecker() {
+		// TODO Auto-generated constructor stub
+
+	}
 
 	/**
 	 * @param oldCon
@@ -22,10 +26,6 @@ public class ContactsExistingChecker {
 	 *            new contacts from file
 	 * @return not existed users to add
 	 */
-	public ContactsExistingChecker() {
-		// TODO Auto-generated constructor stub
-		
-	}
 	public List<Contact> checkNewContacts(List<Contact> oldCon,
 			List<Contact> newCon) {
 		contacts = new ArrayList<Contact>();
@@ -48,8 +48,6 @@ public class ContactsExistingChecker {
 
 		return contacts;
 	}
-
-	
 
 	public int getNumExistedContacts() {
 		return numExistedContacts;

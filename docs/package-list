@@ -1,0 +1,5 @@
+org.gradle.DBTools
+org.gradle.beans
+org.gradle.business
+org.gradle.tools.excelhandling
+org.gradle.tools.validation

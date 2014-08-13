@@ -1,4 +1,4 @@
-package org.gradle.beans;
+package org.gradle.DBTools;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -6,25 +6,24 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
-import org.gradle.DBTools.HibernateConnector;
 import org.gradle.business.Contact;
 
 /**
- * list contacts to view
+ * list contacts
  * 
  * @author arma
  *
  */
-@ManagedBean
-public class ListContactsBean implements Serializable {
+
+public class ContactsHandler {
 
 	private List<Contact> contacts;
 	private HibernateConnector hc;
 
-	public ListContactsBean() {
+	public ContactsHandler() {
 		// TODO Auto-generated constructor stub
 		contacts = new ArrayList<Contact>();
-		hc = new HibernateConnector();
+		hc = HibernateConnector.getInstance();
 		refreshContacts();
 
 	}
@@ -38,8 +37,11 @@ public class ListContactsBean implements Serializable {
 	}
 
 	public void refreshContacts() {
-		
+
 		setContacts(hc.listContacts());
 	}
 
+	public void insertContacts(List<Contact> contacts) {
+		hc.insertContacts(contacts);
+	}
 }

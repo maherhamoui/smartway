@@ -8,7 +8,7 @@
 <h:head></h:head>
 <body>
 	<h:form enctype="multipart/form-data">
-		<p:dataTable var="contact" value="#{ListContactBean.contacts}">
+		<p:dataTable var="contact" value="#{mainBean.contacts}">
 
 
 			<p:column headerText="Name">
@@ -28,7 +28,7 @@
 		</p:dataTable>
 
 
-		<p:fileUpload value="#{uploadFileBean.file}" mode="simple" />
+		<p:fileUpload value="#{mainBean.file}" mode="simple" />
 		<br />
 		<p:commandButton value="Submit" ajax="false"
 			actionListener="#{mainBean.doWork}" update="koka" />
