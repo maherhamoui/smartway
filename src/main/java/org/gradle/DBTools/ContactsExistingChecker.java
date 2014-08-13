@@ -1,13 +1,19 @@
-package org.gradle.tools;
+package org.gradle.DBTools;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.gradle.business.Contact;
-
-public class ContactsComparer {
+import org.gradle.business.ContactsComparer;
+/**
+ * 
+ * @author arma
+ * checks list of contacts if they are existed in DB
+ */
+public class ContactsExistingChecker {
 	private List<Contact> contacts;
 	private int numExistedContacts = 0;
+	
 
 	/**
 	 * @param oldCon
@@ -16,6 +22,10 @@ public class ContactsComparer {
 	 *            new contacts from file
 	 * @return not existed users to add
 	 */
+	public ContactsExistingChecker() {
+		// TODO Auto-generated constructor stub
+		
+	}
 	public List<Contact> checkNewContacts(List<Contact> oldCon,
 			List<Contact> newCon) {
 		contacts = new ArrayList<Contact>();
@@ -23,7 +33,7 @@ public class ContactsComparer {
 		for (Contact con1 : newCon) {
 			t = 0;
 			for (Contact con2 : oldCon) {
-				if (compare(con1, con2) == 0) {
+				if (ContactsComparer.compare(con1, con2) == 0) {
 					numExistedContacts++;
 					t++;
 				}
@@ -39,12 +49,7 @@ public class ContactsComparer {
 		return contacts;
 	}
 
-	private int compare(Contact con1, Contact con2) {
-		if (con1.getEmail().equals(con2.getEmail()))
-			return 0;
-		else
-			return 1;
-	}
+	
 
 	public int getNumExistedContacts() {
 		return numExistedContacts;

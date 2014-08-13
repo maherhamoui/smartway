@@ -1,4 +1,4 @@
-package org.gradle;
+package org.gradle.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -6,20 +6,26 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
+import org.gradle.DBTools.HibernateConnector;
 import org.gradle.business.Contact;
-import org.gradle.hbm.HibernateConnector;
 
+/**
+ * list contacts to view
+ * 
+ * @author arma
+ *
+ */
 @ManagedBean
-public class ContactBean implements Serializable {
+public class ListContactsBean implements Serializable {
 
 	private List<Contact> contacts;
 	private HibernateConnector hc;
 
-	public ContactBean() {
+	public ListContactsBean() {
 		// TODO Auto-generated constructor stub
 		contacts = new ArrayList<Contact>();
 		hc = new HibernateConnector();
-		setContacts(hc.listContacts());
+		refreshContacts();
 
 	}
 
@@ -31,8 +37,8 @@ public class ContactBean implements Serializable {
 		this.contacts = contacts;
 	}
 
-	public void appendContacts(List<Contact> c) {
-		hc.insertContacts(c);
+	public void refreshContacts() {
+		
 		setContacts(hc.listContacts());
 	}
 

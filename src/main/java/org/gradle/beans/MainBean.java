@@ -1,4 +1,4 @@
-package org.gradle;
+package org.gradle.beans;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,48 +8,42 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 import org.dom4j.bean.BeanAttribute;
+import org.gradle.DBTools.ContactsExistingChecker;
+import org.gradle.DBTools.HibernateConnector;
 import org.gradle.business.Contact;
-import org.gradle.tools.ContactsComparer;
-import org.gradle.tools.ExcelExtReader;
+import org.gradle.tools.excelhandling.ExcelFileReader;
 import org.gradle.tools.validation.ContactsValidator;
 import org.primefaces.model.UploadedFile;
-
+/**
+ * do the main work
+ * @author arma
+ *
+ */
 @ManagedBean
-public class UploadFileBean implements Serializable{
+public class MainBean implements Serializable {
 	private UploadedFile file;
-	private boolean notUploaded = true;
+	private HibernateConnector hc;
 
-	public UploadedFile getFile() {
-		return file;
-	}
-
-	public void setFile(UploadedFile file) {
-		this.file = file;
-	}
-
-	public boolean isNotUploaded() {
-		return notUploaded;
-	}
-
-	public void setUploaded(boolean uploaded) {
-		this.notUploaded = uploaded;
-	}
-
-	public void upload() {
+	public void doWork() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		UploadFileBean uploadBean = (UploadFileBean) context.getApplication()
+				.evaluateExpressionGet(context, "#{uploadFileBean}",
+						UploadFileBean.class);
+		this.file = uploadBean.getFile();
 		if (file != null) {
+			hc = new HibernateConnector();
 
-			ExcelExtReader ex = new ExcelExtReader();
+			ExcelFileReader ex = new ExcelFileReader();
 
-			FacesContext context = FacesContext.getCurrentInstance();
-			ContactBean b = (ContactBean) context.getApplication()
-					.evaluateExpressionGet(context, "#{contactBean}",
-							ContactBean.class);
+			ListContactsBean lcb = (ListContactsBean) context.getApplication()
+					.evaluateExpressionGet(context, "#{ListContactBean}",
+							ListContactsBean.class);
 			ContactsValidator cv = new ContactsValidator();
 			List<Contact> con = cv.validateContacts(ex.readFile(file));
 
-			ContactsComparer cc = new ContactsComparer();
-
-			b.appendContacts(cc.checkNewContacts(b.getContacts(), con));
+			ContactsExistingChecker cc = new ContactsExistingChecker();
+			hc.insertContacts(cc.checkNewContacts(lcb.getContacts(), con));
+			lcb.refreshContacts();
 			FacesMessage message = new FacesMessage("Succesful ");
 			FacesMessage messageCreated = new FacesMessage(
 					cc.getNumContactsCreated() + " rows are created");

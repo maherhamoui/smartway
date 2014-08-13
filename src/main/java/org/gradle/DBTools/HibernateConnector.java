@@ -1,5 +1,6 @@
-package org.gradle.hbm;
+package org.gradle.DBTools;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.gradle.business.Contact;
@@ -8,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class HibernateConnector {
+public class HibernateConnector implements Serializable {
 	private static SessionFactory sf;
 
 	public HibernateConnector() {
@@ -24,6 +25,12 @@ public class HibernateConnector {
 
 	}
 
+	/**
+	 * inserts a single contact
+	 * 
+	 * @param c
+	 *            a contact to insert
+	 */
 	public void insertContact(Contact c) {
 		Session s = sf.openSession();
 		s.beginTransaction();
@@ -33,6 +40,12 @@ public class HibernateConnector {
 
 	}
 
+	/**
+	 * insert list of contacts
+	 * 
+	 * @param contacts
+	 *            list of contacts to be inserted
+	 */
 	public void insertContacts(List<Contact> contacts) {
 		for (Contact c : contacts) {
 			this.insertContact(c);

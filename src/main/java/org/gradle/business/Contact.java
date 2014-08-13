@@ -9,7 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+/**
+ * the contact class holds contact infos
+ * @author arma
+ *
+ */
 @Entity
 @Table(name = "CONTACT")
 public class Contact implements Serializable{

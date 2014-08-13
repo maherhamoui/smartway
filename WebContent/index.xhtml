@@ -8,7 +8,7 @@
 <h:head></h:head>
 <body>
 	<h:form enctype="multipart/form-data">
-		<p:dataTable var="contact" value="#{contactBean.contacts}">
+		<p:dataTable var="contact" value="#{ListContactBean.contacts}">
 
 
 			<p:column headerText="Name">
@@ -28,11 +28,10 @@
 		</p:dataTable>
 
 
-		<p:fileUpload value="#{uploadFileBean.file}"
-			allowTypes="/(\.|\/)(xls|xlsx)$/" sizeLimit="100000"
-			description="Select file" mode="simple" />
-		<p:commandButton  value="Submit" ajax="false"
-			actionListener="#{uploadFileBean.upload}" update="koka" />
+		<p:fileUpload value="#{uploadFileBean.file}" mode="simple" />
+		<br />
+		<p:commandButton value="Submit" ajax="false"
+			actionListener="#{mainBean.doWork}" update="koka" />
 
 	</h:form>
 </body>
